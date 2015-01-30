@@ -1,3 +1,7 @@
+/*
+This file is used to generate a inital field with regular arrangement of spheres. The spheres will be put in an array with the angle
+between two spheres will always be 0 or 90. We need input the number of spheres in three directions as Nx, Ny and Nz.
+*/
 #include <time.h>
 
 #include "bluebottle.h"
@@ -23,7 +27,6 @@ void seeder_array(int Nx, int Ny, int Nz, real a, real rho, real E, real sigma, 
   parts = (part_struct*) malloc(nparts * sizeof(part_struct));
   cpumem += nparts * sizeof(part_struct);
 
-
   real dx = Dom.xl/Nx; //dx in the distance between centers of two nearby particles in x direction
   real dy = Dom.yl/Ny;
   real dz = Dom.zl/Nz;
@@ -45,9 +48,6 @@ void seeder_array(int Nx, int Ny, int Nz, real a, real rho, real E, real sigma, 
     printf("...bluebottle seeder done.\n\n");
     exit(EXIT_FAILURE);
   }
-
-
-  
   
   for(int k = 0; k < Nz; k++)
   {
@@ -60,21 +60,21 @@ void seeder_array(int Nx, int Ny, int Nz, real a, real rho, real E, real sigma, 
   			parts[i + j*Nx + k*(Nx*Ny)].z = Dom.zs + dz/2 + k*dz;
   			parts[i + j*Nx + k*(Nx*Ny)].r = a;
   			parts[i + j*Nx + k*(Nx*Ny)].u = 0;
-     		parts[i + j*Nx + k*(Nx*Ny)].v = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].w = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aFx = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aFy = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aFz = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aLx = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aLy = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].aLz = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].rho = rho;
-      		parts[i + j*Nx + k*(Nx*Ny)].E = E;
-      		parts[i + j*Nx + k*(Nx*Ny)].sigma = sigma;
-      		parts[i + j*Nx + k*(Nx*Ny)].order = o;
-      		parts[i + j*Nx + k*(Nx*Ny)].ncoeff = 0;
-      		parts[i + j*Nx + k*(Nx*Ny)].translating = t;
-      		parts[i + j*Nx + k*(Nx*Ny)].rotating = r;
+     			parts[i + j*Nx + k*(Nx*Ny)].v = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].w = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aFx = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aFy = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aFz = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aLx = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aLy = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].aLz = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].rho = rho;
+      			parts[i + j*Nx + k*(Nx*Ny)].E = E;
+      			parts[i + j*Nx + k*(Nx*Ny)].sigma = sigma;
+      			parts[i + j*Nx + k*(Nx*Ny)].order = o;
+      			parts[i + j*Nx + k*(Nx*Ny)].ncoeff = 0;
+      			parts[i + j*Nx + k*(Nx*Ny)].translating = t;
+      			parts[i + j*Nx + k*(Nx*Ny)].rotating = r;
   		}
   	}
   }
@@ -101,10 +101,8 @@ void seeder_array(int Nx, int Ny, int Nz, real a, real rho, real E, real sigma, 
     fprintf(ofile, "\n");
     fprintf(ofile, "r %f\n", parts[i].r);
     fprintf(ofile, "(x, y, z) %f %f %f\n", parts[i].x, parts[i].y, parts[i].z);
-    fprintf(ofile, "(aFx, aFy, aFz) %f %f %f\n", parts[i].aFx, parts[i].aFy,
-      parts[i].aFz);
-    fprintf(ofile, "(aLx, aLy, aLz) %f %f %f\n", parts[i].aLx, parts[i].aLy,
-      parts[i].aLz);
+    fprintf(ofile, "(aFx, aFy, aFz) %f %f %f\n", parts[i].aFx, parts[i].aFy,parts[i].aFz);
+    fprintf(ofile, "(aLx, aLy, aLz) %f %f %f\n", parts[i].aLx, parts[i].aLy,parts[i].aLz);
     fprintf(ofile, "rho %f\n", parts[i].rho);
     fprintf(ofile, "E %f\n", parts[i].E);
     fprintf(ofile, "sigma %f\n", parts[i].sigma);
